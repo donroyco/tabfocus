@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>A very interesting website</title>
+    <link rel="shortcut icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+    <style>
+    body {
+        font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+        margin: 2em;
+    }
+
+    pre {
+        background: #eee;
+        border: 1px solid #ccc;
+        color: #1a1a1a;
+        page-break-inside: avoid;
+        font-family: Consolas, "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", Courier, monospace;
+        font-size: 1.25em;
+        line-height: 1.6;
+        margin-bottom: 1.6em;
+        max-width: 100%;
+        overflow: auto;
+        padding: 1em 2em;
+        display: block;
+        word-wrap: break-word;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Tab hint effect</h1>
+    <p>See the JavaScript code that is needed to check if the current tab is focused by the user, and to alter the title and favicon if it's not (to hint the user to come back).</p>
+        <pre><code>"use strict";
+const onVisibilityChange = () => {
+    const documentTitle = document.querySelector('title');
+    const documentIcon = document.querySelector('[type="image/x-icon"]');
+
+    if (document.visibilityState === 'hidden') {
+        documentTitle.innerHTML = 'Please come back!';
+        documentIcon.href = setSvg('💩');
+    } else {
+        documentTitle.innerHTML = 'A very interesting website';
+        documentIcon.href = setSvg('🎯');
+    }
+};
+document.addEventListener('visibilitychange', onVisibilityChange, false);
+
+function setSvg(icon) {
+    return `data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;${icon}&lt;/text&gt;&lt;/svg&gt;`;
+}</code></pre>
+    <script>
+    "use strict";
+    const onVisibilityChange = () => {
+        const documentTitle = document.querySelector('title');
+        const documentIcon = document.querySelector('[type="image/x-icon"]');
+
+        if (document.visibilityState === 'hidden') {
+            documentTitle.innerHTML = 'Please come back!';
+            documentIcon.href = setSvg('💩');
+        } else {
+            documentTitle.innerHTML = 'A very interesting website';
+            documentIcon.href = setSvg('🎯');
+        }
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange, false);
+
+    function setSvg(icon) {
+        return `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${icon}</text></svg>`;
+    }
+    </script>
+</body>
+
+</html>
